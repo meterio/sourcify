@@ -237,5 +237,11 @@ export default {
         "monitored": false,
         "contractFetchAddress": "https://scan.meter.io/" + ETHERSCAN_SUFFIX,
         "txRegex": ETHERSCAN_REGEX
+    },
+    "83": {
+        "supported": true,
+        "monitored": false,
+        "contractFetchAddress": "https://scan-warringstakes.meter.io/" + ETHERSCAN_SUFFIX,
+        "txRegex": ETHERSCAN_REGEX
     }
 }

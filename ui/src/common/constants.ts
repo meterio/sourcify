@@ -23,7 +23,8 @@ export const CHAIN_OPTIONS = [
     {value: "oneledger testnet", label: "OneLedger Testnet Frankenstein", id: 4216137055},
     {value: "syscoin testnet", label: "Syscoin Tanenbaum Testnet", id: 5700},
     {value: "optimistic kovan", label: "Optimistic Ethereum Testnet Kovan", id: 69},
-    {value: "meter mainnet", label: "Meter Mainnet", id: 82}
+    {value: "meter mainnet", label: "Meter Mainnet", id: 82},
+    {value: "meter testnet", label: "Meter Testnet", id: 83}
 ];
 
 export const ID_TO_CHAIN = {};
