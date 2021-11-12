@@ -8,6 +8,7 @@ const solc = require('solc');
 import { spawnSync } from 'child_process';
 import { StatusCodes } from 'http-status-codes';
 import { ethers } from 'ethers';
+import any from  'promise.any';
 
 const GITHUB_SOLC_REPO = "https://github.com/ethereum/solc-bin/raw/gh-pages/linux-amd64/";
 
@@ -55,17 +56,20 @@ export async function checkEndpoint(provider: string): Promise<void> {
  */
 export async function getBytecode(web3array: Web3[], address: string): Promise<string> {
     address = Web3.utils.toChecksumAddress(address);
+    const rpcPromises: Promise<string>[] = [];
     for (const web3 of web3array) {
-        try {
-            return <string> await Promise.race([
-                web3.eth.getCode(address),
-                new Promise((_resolve, reject) => {
-                    setTimeout(() => reject('RPC took too long to respond'), 3e3);
-                })
-            ])
-        } catch (err: any) {
-            throw new Error(err);
-        }
+        rpcPromises.push(web3.eth.getCode(address));
+    }
+    try {
+        // Promise.any for Node v15.0.0<
+        return <string> await any([ 
+            ...rpcPromises,
+            new Promise((_resolve, reject) => {
+                setTimeout(() => reject('RPC took too long to respond'), 3e3);
+            })
+        ])
+    } catch (err: any) {
+        throw new Error(err);
     }
 }
 
@@ -99,12 +103,12 @@ export async function recompile(
 
     const compiled = await useCompiler(version, solcJsonInput, log);
     const output = JSON.parse(compiled);
-    if (!output.contracts || !output.contracts[fileName] || !output.contracts[fileName][contractName]) {
+    if (!output.contracts || !output.contracts[fileName] || !output.contracts[fileName][contractName] || !output.contracts[fileName][contractName].evm || !output.contracts[fileName][contractName].evm.bytecode) {
         const errors = output.errors.filter((e: any) => e.severity === "error").map((e: any) => e.message);
         log.error({ loc, fileName, contractName, version, errors });
         throw new Error(RECOMPILATION_ERR_MSG);
     }
-
+    
     const contract: any = output.contracts[fileName][contractName];
     return {
         creationBytecode: `0x${contract.evm.bytecode.object}`,

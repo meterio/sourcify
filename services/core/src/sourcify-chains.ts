@@ -223,6 +223,15 @@ export default {
         ],
         "txRegex": getBlockscoutRegex()
     },
+    "69": {
+        "supported": true,
+        "monitored": false,
+        "contractFetchAddress": "https://kovan-optimistic.etherscan.io/" + ETHERSCAN_SUFFIX,
+        "rpc": [
+            'https://kovan.optimism.io'
+        ],
+        "txRegex": ETHERSCAN_REGEX
+    },
     "82": {
         "supported": true,
         "monitored": false,
