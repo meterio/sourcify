@@ -1078,6 +1078,22 @@
     "networkId": 82
   },
   {
+    "name": "Meter Testnet",
+    "chain": "METER",
+    "network": "testnet",
+    "rpc": ["https://rpctest.meter.io"],
+    "faucets": [],
+    "nativeCurrency": {
+      "name": "Meter",
+      "symbol": "MTR",
+      "decimals": 18
+    },
+    "infoURL": "https://www.meter.io",
+    "shortName": "Meter",
+    "chainId": 83,
+    "networkId": 83
+  },
+  {
     "name": "GateChain Testnet",
     "chainId": 85,
     "shortName": "gttest",
