@@ -238,4 +238,16 @@ export default {
         "contractFetchAddress": "https://blockexplorer.boba.network/" + BLOCKSCOUT_SUFFIX,
         "txRegex": getBlockscoutRegex()
     },
+    "82": {
+        "supported": true,
+        "monitored": false,
+        "contractFetchAddress": "https://scan.meter.io/" + ETHERSCAN_SUFFIX,
+        "txRegex": ETHERSCAN_REGEX
+    },
+    "83": {
+        "supported": true,
+        "monitored": false,
+        "contractFetchAddress": "https://scan-warringstakes.meter.io/" + ETHERSCAN_SUFFIX,
+        "txRegex": ETHERSCAN_REGEX
+    }
 }

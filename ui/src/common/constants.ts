@@ -26,6 +26,8 @@ export const CHAIN_OPTIONS = [
     {value: "optimistic kovan", label: "Optimistic Ethereum Testnet Kovan", id: 69},
     {value: "boba network mainnet", label: "Boba Network", id: 288 },
     {value: "boba network rinkeby", label: "Boba Network Rinkeby Testnet", id: 28 },
+    {value: "meter mainnet", label: "Meter Mainnet", id: 82},
+    {value: "meter testnet", label: "Meter Testnet", id: 83}
 ];
 
 export const ID_TO_CHAIN = {};
